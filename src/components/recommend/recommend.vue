@@ -1,6 +1,7 @@
 <template>
     <div>
-        推荐页面
+        <div>轮播图</div>
+        <div>歌单列表</div>
     </div>
 </template>
 
