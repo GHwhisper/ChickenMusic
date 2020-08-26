@@ -30,7 +30,17 @@ module.exports = {
                 pathRewrite: {
                     '^api/getDiscList': ''
                 }
-            }
+            },
+            // 'api/getSingerList': {
+            //     target: 'https://u.y.qq.com/cgi-bin/musics.fcg',
+            //     bypass: function (req, res, proxyOptions) {
+            //         req.headers.referer = 'https://c.y.qq.com'
+            //         req.headers.host = 'u.y.qq.com'
+            //     },
+            //     pathRewrite: {
+            //         '^api/getSingerList': ''
+            //     }
+            // }
         }
     }
 }
