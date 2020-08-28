@@ -1,9 +1,11 @@
 <template>
     <div class="singer">
-        <list-view :data="singers"></list-view>
+        <list-view :data="singers" @select="selectSinger"></list-view>
         <div v-show="!singers.length" class="loading-container">
             <loading></loading>
         </div>
+        <!--承载子路由-->
+        <router-view></router-view>
     </div>
 </template>
 
@@ -13,6 +15,7 @@
     import Singer from 'common/js/singer'
     import ListView from 'base/listview/listview'
     import Loading from 'base/loading/loading'
+    import { mapMutations } from 'vuex'
 
     const HOT_NAME = '热门'
     const HOT_SINGER_LEN = 10
@@ -31,6 +34,12 @@
             this._getSingerList()
         },
         methods: {
+            selectSinger(singer) {
+                this.$router.push({
+                    path: `/singer/${singer.id}`
+                })
+                this.setSinger(singer)
+            },
             _getSingerList() {
                 getSingerList().then(res => {
                     if(res.code === ERR_OK) {
@@ -82,7 +91,10 @@
                     return a.title.charCodeAt(0) - b.title.charCodeAt(0)
                 })
                 return hot.concat(ret)  // 拼接得到一维数组
-            }
+            },
+            ...mapMutations({
+                setSinger: 'SET_SINGER'
+            })
         }
     }
 </script>
