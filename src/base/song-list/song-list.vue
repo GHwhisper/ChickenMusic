@@ -42,6 +42,8 @@
             box-sizing border-box
             height 64px
             font-size $font-size-medium
+            display flex
+            align-items center
             .content
                 flex 1
                 line-height 20px
