@@ -7,3 +7,8 @@ body, html
   -webkit-tap-highlight-color transparent
   background $color-background
   color $color-text
+
+
+// 解决[Intervention] Unable to preventDefault inside passive event listener due to target being treated as passive.
+*
+  touch-action pan-y
