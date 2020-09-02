@@ -35,8 +35,10 @@
 
 <script>
     import Slider from 'base/slider/slider'
-    import { getRecommend, getDiscList } from 'api/recommend'
-    import { ERR_OK } from 'api/config'
+    import {
+        // getRecommend,
+        getDiscList } from 'api/recommend'
+    // import { ERR_OK } from 'api/config'
     import Scroll from 'base/scroll/scroll'
     import Loading from 'base/loading/loading'
     import { playlistMixin } from 'common/js/mixin'
@@ -65,11 +67,12 @@
                 this.$refs.scroll.refresh()
             },
             _getRecommend() {
-                getRecommend().then(res => {
-                    if (res.code === ERR_OK) {
-                        this.recommends = res.data.slider
-                    }
-                }) // 由于目前qq音乐的页面和接口改变，必然无法请求成功，故自行设置recommend模拟
+                // getRecommend().then(res => {
+                //     if (res.code === ERR_OK) {
+                //         this.recommends = res.data.slider
+                //     }
+                // })
+                // 由于目前qq音乐的页面和接口改变，必然无法请求成功，故自行设置recommend模拟
                 this.recommends = [{
                     id: 477,
                     linkUrl: 'https://y.qq.com/m/digitalbum/v3/gold/index.html?mid=004HXMO41q7Gdq&_video=true',
