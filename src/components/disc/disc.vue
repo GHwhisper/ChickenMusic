@@ -1,18 +1,18 @@
 <template>
     <transition name="slide">
-        <music-list :songs="songs" :title="title" :bg-image="bgImage"></music-list>
+        <music-list :title="title" :bg-image="bgImage" :songs="songs"></music-list>
     </transition>
 </template>
 
 <script>
-    import { mapGetters } from  'vuex'
-    import { getSingerDetail } from 'api/singer'
+    import MusicList from 'components/music-list/music-list'
+    import { mapGetters } from 'vuex'
+    import { getSongList } from 'api/recommend'
     import { ERR_OK } from 'api/config'
     import { createSong } from 'common/js/song'
-    import MusicList from 'components/music-list/music-list'
 
     export default {
-        name: "singer-detail",
+        name: "disc",
         components: {
             MusicList
         },
@@ -22,25 +22,24 @@
             }
         },
         created() {
-            this._getDetail()
+            this._getSongList()
         },
         methods: {
-            _getDetail() {
-                if(!this.singer.id) {
-                    this.$router.push('/singer')
+            _getSongList() {
+                if(!this.disc.dissid) {
+                    this.$router.push('/recommend')
                     return
                 }
-                getSingerDetail(this.singer.id).then(res => {
+                getSongList(this.disc.dissid).then(res => {
                     if(res.code === ERR_OK) {
-                        this.songs = this._normalizeSongs(res.data.list)
+                        this.songs = this._normalizeSongs(res.cdlist[0].songlist)
                     }
                 })
             },
             _normalizeSongs(list) {
                 let ret = []
-                list.forEach(item => {
-                    let { musicData } = item
-                    if(musicData.songid && musicData.albummid) {
+                list.forEach(musicData => {
+                    if(musicData.songid && musicData.albumid) {
                         ret.push(createSong(musicData))
                     }
                 })
@@ -49,19 +48,19 @@
         },
         computed: {
             title() {
-                return this.singer.name
+                return this.disc.dissname
             },
             bgImage() {
-                return this.singer.avatar
+                return this.disc.imgurl
             },
-            ...mapGetters(['singer'])
+            ...mapGetters([
+                'disc'
+            ])
         }
     }
 </script>
 
 <style lang="stylus" scoped>
-    @import "~common/stylus/variable"
-
     .slide-enter-active, .slide-leave-active
         transition all .3s
     .slide-enter, .slide-leave-to

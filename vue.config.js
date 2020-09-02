@@ -31,20 +31,30 @@ module.exports = {
                     '^/api/getDiscList': ''
                 }
             },
-            "/api/lyric": {
+            '/api/lyric': {
                 target: 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg',
                 bypass: function (req, res, proxyOptions) {
-                    req.headers.referer = 'https://y.qq.com'
+                    req.headers.referer = 'https://y.qq.com/'
                     req.headers.host = 'y.qq.com'
                 },
                 pathRewrite: {
                     '^/api/lyric': ''
                 }
-            }
+            },
+            '/api/getSongList': {   // 歌单详情的歌曲列表
+                target: 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg',
+                bypass: function (req, res, proxyOptions) {
+                    req.headers.referer = 'https://y.qq.com/'
+                    req.headers.host = 'y.qq.com'
+                },
+                pathRewrite: {
+                    '^/api/getSongList': ''
+                }
+            },
             // '/api/getSingerList': {
             //     target: 'https://u.y.qq.com/cgi-bin/musics.fcg',
             //     bypass: function (req, res, proxyOptions) {
-            //         req.headers.referer = 'https://c.y.qq.com'
+            //         req.headers.referer = 'https://c.y.qq.com/'
             //         req.headers.host = 'u.y.qq.com'
             //     },
             //     pathRewrite: {
