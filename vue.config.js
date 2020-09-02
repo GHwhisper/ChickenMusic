@@ -14,41 +14,41 @@ module.exports = {
 
     devServer: {
         proxy: {
-            'api': {
-                target: 'http://localhost:8080',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^api': '/'     // 代理路径
-                }
-            },
-            'api/getDiscList': {
+            // 'api': {
+            //     target: 'http://localhost:8080',
+            //     changeOrigin: true,
+            //     pathRewrite: {
+            //         '^api': '/'     // 代理路径
+            //     }
+            // },
+            '/api/getDiscList': {
                 target: 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg',
                 bypass: function (req, res, proxyOptions) {
-                    req.headers.referer = 'https://c.y.qq.com'
+                    req.headers.referer = 'https://c.y.qq.com/'
                     req.headers.host = 'c.y.qq.com'
                 },
                 pathRewrite: {
-                    '^api/getDiscList': ''
+                    '^/api/getDiscList': ''
                 }
             },
-            "api/lyric": {
+            "/api/lyric": {
                 target: 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg',
                 bypass: function (req, res, proxyOptions) {
                     req.headers.referer = 'https://y.qq.com'
                     req.headers.host = 'y.qq.com'
                 },
                 pathRewrite: {
-                    '^api/lyric': ''
+                    '^/api/lyric': ''
                 }
             }
-            // 'api/getSingerList': {
+            // '/api/getSingerList': {
             //     target: 'https://u.y.qq.com/cgi-bin/musics.fcg',
             //     bypass: function (req, res, proxyOptions) {
             //         req.headers.referer = 'https://c.y.qq.com'
             //         req.headers.host = 'u.y.qq.com'
             //     },
             //     pathRewrite: {
-            //         '^api/getSingerList': ''
+            //         '^/api/getSingerList': ''
             //     }
             // },
         }
