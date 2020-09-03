@@ -51,6 +51,16 @@ module.exports = {
                     '^/api/getSongList': ''
                 }
             },
+            // '/api/getMusicList': {   // 排行详情的歌曲列表 // 然而web pc端只有20首，移动端找不到接口？？
+            //     target: 'https://u.y.qq.com/cgi-bin/musics.fcg',
+            //     bypass: function (req, res, proxyOptions) {
+            //         req.headers.referer = 'https://y.qq.com/'
+            //         req.headers.host = 'y.qq.com'
+            //     },
+            //     pathRewrite: {
+            //         '^/api/getMusicList': ''
+            //     }
+            // },
             // '/api/getSingerList': {
             //     target: 'https://u.y.qq.com/cgi-bin/musics.fcg',
             //     bypass: function (req, res, proxyOptions) {
