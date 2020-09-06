@@ -14,8 +14,8 @@ module.exports = {
 
     devServer: {
         proxy: {
-            // 'api': {
-            //     target: 'http://localhost:8080',
+            // '/api': {
+            //     target: 'http://c.y.qq.com',
             //     changeOrigin: true,
             //     pathRewrite: {
             //         '^api': '/'     // 代理路径
@@ -82,5 +82,9 @@ module.exports = {
             //     }
             // },
         }
-    }
+    },
+
+    publicPath: '/',
+    outputDir: 'chicken_music',
+    assetsDir: 'assets'
 }
